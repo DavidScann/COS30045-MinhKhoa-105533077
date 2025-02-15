@@ -6,6 +6,7 @@
     <title>Appliance Energy — Home</title>
     <link rel="stylesheet" href="css/styles.css" />
   </head>
+
   <body>
     <header class="site-header">
       <a href="#" id="logo" class="logo" aria-label="Home" data-target="home">
@@ -31,6 +32,10 @@
               >Televisions</a
             >
           </li>
+          
+          <li><a href="#" class="nav-link" data-target="week5">Week 5</a></li>
+          <li><a href="#" class="nav-link" data-target="week6">Week 6</a></li>
+          <li><a href="#" class="nav-link" data-target="week7">Week 7</a></li>
           <li><a href="#" class="nav-link" data-target="about">About Us</a></li>
         </ul>
       </nav>
@@ -54,23 +59,126 @@
       </section>
 
       <section id="televisions" class="page" tabindex="-1" hidden>
-        <h1>Televisions</h1>
-        <p>
-          Placeholder content: Televisions' energy use varies by size and
-          technology. Typical TVs might use between 50–200 kWh/year depending on
-          screening habits and power mode. Consider energy labels and OLED vs
-          LED differences when estimating usage.
+        <h1>Televisions: The Energy Story</h1>
+        <p class="intro-text">
+          Television technology has evolved rapidly, bringing bigger screens and
+          sharper images to our living rooms. But what does this mean for our
+          energy bills and the environment? Explore the data below to understand
+          the current landscape of the Australian TV market.
         </p>
-        <ul>
-          <li>
-            Screen size and resolution — larger screens often use more power.
-          </li>
-          <li>
-            Technology — LED/LCD vs OLED can change standby and active power
-            draw.
-          </li>
-          <li>Standby consumption — look for low-standby models.</li>
-        </ul>
+
+        <article class="story-section">
+          <h2>1. The Landscape of Choice</h2>
+          <p>
+            When shopping for a new TV, Australian consumers are presented with
+            a variety of display technologies. LED/LCD screens still dominate
+            the market due to their affordability and maturity, but newer
+            technologies like OLED are gaining traction.
+          </p>
+          <figure>
+            <img
+              src="visualisations/Types of TV screen technologies available in Australia.png"
+              alt="Bar chart showing the frequency of different TV screen technologies available in Australia, with LED/LCD being the most common."
+              loading="lazy"
+            />
+            <figcaption>
+              Figure 1: Distribution of TV screen technologies in the Australian
+              market.
+            </figcaption>
+          </figure>
+
+          <p>
+            The market is also highly competitive, with numerous brands vying
+            for attention. Some brands offer a massive range of models, giving
+            consumers plenty of choices but also making the decision-making
+            process more complex.
+          </p>
+          <figure>
+            <div
+              id="bar-chart-container"
+              class="responsive-svg-container"
+            ></div>
+            <figcaption>
+              Figure 2: Number of unique TV models per brand.
+            </figcaption>
+          </figure>
+        </article>
+
+        <article class="story-section">
+          <h2>2. Bigger is Better?</h2>
+          <p>
+            There is a clear trend towards larger screens. The data shows a
+            significant concentration of available models in the 50-70 inch
+            range. While a cinematic experience is desirable, it's important to
+            consider that larger screen real estate often requires more power to
+            illuminate.
+          </p>
+          <figure>
+            <img
+              src="visualisations/Available screen size frequency.png"
+              alt="Histogram showing the frequency of different screen sizes available."
+              loading="lazy"
+            />
+            <figcaption>
+              Figure 3: Frequency of available screen sizes.
+            </figcaption>
+          </figure>
+        </article>
+
+        <article class="story-section">
+          <h2>3. The Energy Cost</h2>
+          <p>
+            So, how does technology choice impact your energy bill? The
+            visualization below breaks down power consumption by screen
+            technology. It highlights the efficiency differences between
+            standard LEDs and other technologies.
+          </p>
+          <figure>
+            <img
+              src="visualisations/Screen technology power consumption.png"
+              alt="Box plot comparing power consumption across different screen technologies."
+              loading="lazy"
+            />
+            <figcaption>
+              Figure 4: Power consumption ranges by screen technology.
+            </figcaption>
+          </figure>
+
+          <p>
+            Finally, the relationship between size and power is undeniable. As
+            screen size increases, so does power consumption. However, the
+            spread of data points suggests that efficiency varies significantly
+            even within the same size category, reinforcing the importance of
+            checking energy rating labels.
+          </p>
+          <figure>
+            <img
+              src="visualisations/Relationship between screen size and power use.png"
+              alt="Scatter plot showing the positive correlation between screen size and power consumption."
+              loading="lazy"
+            />
+            <figcaption>
+              Figure 5: Relationship between screen size and power usage.
+            </figcaption>
+          </figure>
+
+          <p>
+            It is also worth noting that energy efficiency can vary by
+            manufacturer. Some brands may prioritize performance or brightness
+            over energy savings. The chart below illustrates the top 10 brands
+            associated with higher energy consumption.
+          </p>
+          <figure>
+            <img
+              src="visualisations/Top 10 energy consuming brands.png"
+              alt="Bar chart listing the top 10 brands with the highest energy consumption."
+              loading="lazy"
+            />
+            <figcaption>
+              Figure 6: Top 10 energy consuming tv brands.
+            </figcaption>
+          </figure>
+        </article>
       </section>
 
       <section id="about" class="page" tabindex="-1" hidden>
@@ -82,16 +190,237 @@
         </p>
         <!<!-- Footer must include your name and a GenAI acknowledgement if used. -->
       </section>
+    
+      <section id="week5" class="page" tabindex="-1" hidden>
+        <h1>Exercise 5: Multi-chart webpage</h1>
+        <p>A collection of different D3 chart types based on TV energy consumption and electricity prices data.</p>
+        <div class="chart-container">
+            <section class="chart-section" id="scatter-section-w5">
+                <h2>Scatter Plot</h2>
+                <p>Energy consumption vs. Star rating for TVs.</p>
+                <div id="scatter-chart" class="chart"></div>
+            </section>
+            <section class="chart-section" id="donut-section">
+                <h2>Donut Chart</h2>
+                <p>Average energy consumption for different screen technologies.</p>
+                <div id="donut-chart" class="chart"></div>
+            </section>
+            <section class="chart-section" id="bar-section">
+                <h2>Bar Chart</h2>
+                <p>Number of 55-inch TVs by screen technology.</p>
+                <div id="bar-chart" class="chart"></div>
+            </section>
+            <section class="chart-section" id="line-section">
+                <h2>Line Chart</h2>
+                <p>Spot power prices from 1998 to 2024.</p>
+                <div id="line-chart" class="chart"></div>
+            </section>
+        </div>
+      </section>
+
+      <section id="week6" class="page" tabindex="-1" hidden>
+        <h1>Exercise 6.2: Interactive Scatterplot Tooltips</h1>
+        <p>Explore the relationship between energy consumption, star ratings, screen size, and screen type.</p>
+        <div class="chart-container">
+          <section class="chart-section" id="scatter-section">
+            <h2>Energy Consumption by Star Rating</h2>
+            <div id="scatterplot" class="chart"></div>
+          </section>
+          <section class="chart-section" id="histogram-section">
+            <h2>Energy Consumption Histogram</h2>
+            <div id="histogram" class="chart"></div>
+          </section>
+        </div>
+      </section>
+
+      <section id="week7" class="page" tabindex="-1" hidden>
+        
+    <h1>Exercise 7.1 Data Visualisation Design</h1>
+    <p>
+      Comparing and contrasting different visualisation designs communicating
+      the size of the prison population.
+    </p>
+
+    <div class="vis-section">
+      <h2>Visualisation 1: Metrocosm Prison Population Map</h2>
+      <p>
+        <strong>Purpose:</strong> To show the geographical distribution and
+        scale of the US prison population over time or space.
+      </p>
+      <p>
+        <strong>Kind of chart:</strong> Thematic Map (likely proportional symbol
+        map or choropleth).
+      </p>
+      <p>
+        <strong>Encoding:</strong> Uses area/size of symbols or color intensity
+        to encode the number of prisoners per region/state.
+      </p>
+      <p>
+        <strong>Interactive features:</strong> Often includes tooltips on hover
+        to show exact numbers, and sometimes a time slider.
+      </p>
+      <p>
+        <strong>Features to get message across:</strong> Strong visual contrast
+        and geographical context to highlight regions with disproportionately
+        high incarceration.
+      </p>
+    </div>
+
+    <div class="vis-section">
+      <h2>Visualisation 2: Pew Research Line Chart</h2>
+      <p>
+        <strong>Purpose:</strong> To illustrate the trend of the US
+        incarceration rate over time, specifically showing its decline since
+        1995.
+      </p>
+      <p><strong>Kind of chart:</strong> Line chart.</p>
+      <p>
+        <strong>Encoding:</strong> X-axis encodes time (years), Y-axis encodes
+        the incarceration rate (per 100k people).
+      </p>
+      <p>
+        <strong>Interactive features:</strong> Typically static, though may have
+        hover effects for specific data points.
+      </p>
+      <p>
+        <strong>Features to get message across:</strong> Clear trend line,
+        annotations, and a clear title summarizing the finding.
+      </p>
+    </div>
+
+    <div class="vis-section">
+      <h2>Visualisation 3: World Population Review</h2>
+      <p>
+        <strong>Purpose:</strong> To compare incarceration rates globally across
+        different countries.
+      </p>
+      <p>
+        <strong>Kind of chart:</strong> Choropleth Map and Data Table/Bar Chart.
+      </p>
+      <p>
+        <strong>Encoding:</strong> Color saturation on the map encodes the rate.
+        Bar length in the chart encodes the rate.
+      </p>
+      <p>
+        <strong>Interactive features:</strong> Hovering over a country displays
+        its specific statistics.
+      </p>
+      <p>
+        <strong>Features to get message across:</strong> Global context,
+        highlighting the US's position relative to the rest of the world using
+        striking colors.
+      </p>
+    </div>
+
+    <div class="vis-section">
+      <h2>Visualisation 4: Prison Policy Initiative (Global Comparison)</h2>
+      <p>
+        <strong>Purpose:</strong> To starkly demonstrate how individual US
+        states compare to entire countries in terms of incarceration.
+      </p>
+      <p><strong>Kind of chart:</strong> Horizontal Bar Chart.</p>
+      <p>
+        <strong>Encoding:</strong> Length of the bar encodes the incarceration
+        rate. Color distinguishes US states from other countries.
+      </p>
+      <p>
+        <strong>Interactive features:</strong> Usually static or simple
+        tooltips.
+      </p>
+      <p>
+        <strong>Features to get message across:</strong> Sorting values
+        descending and mixing US states with sovereign nations to emphasize the
+        extreme scale of US incarceration.
+      </p>
+    </div>
+
+    <div class="vis-section">
+      <h2>Visualisation 5: Prison Policy Initiative (Detailed)</h2>
+      <p>
+        <strong>Purpose:</strong> To break down the global context further,
+        possibly by specific demographics or facility types.
+      </p>
+      <p>
+        <strong>Kind of chart:</strong> Stacked Bar Chart or specialized Bar
+        Chart.
+      </p>
+      <p>
+        <strong>Encoding:</strong> Length and color segments encode different
+        categories of incarcerated individuals.
+      </p>
+      <p>
+        <strong>Interactive features:</strong> Static or limited interactions.
+      </p>
+      <p>
+        <strong>Features to get message across:</strong> Detailed categorization
+        showing exactly where the numbers come from (e.g., local jails vs state
+        prisons).
+      </p>
+    </div>
+
+    <div class="vis-section">
+      <h2>Visualisation 6: Prison Policy Initiative (Women)</h2>
+      <p>
+        <strong>Purpose:</strong> To highlight the specific statistics regarding
+        women's incarceration.
+      </p>
+      <p>
+        <strong>Kind of chart:</strong> Pie Chart / "Whole Pie" structural
+        breakdown.
+      </p>
+      <p>
+        <strong>Encoding:</strong> Area/Angle encodes the proportion of women in
+        different types of correctional facilities.
+      </p>
+      <p>
+        <strong>Interactive features:</strong> Mostly static with detailed
+        labeling.
+      </p>
+      <p>
+        <strong>Features to get message across:</strong> Visualizing the "whole"
+        system and dissecting it, using colors and text annotations to make the
+        sub-populations instantly readable.
+      </p>
+    </div>
+
+    <div class="vis-section">
+      <h2>Conclusion: Best Design</h2>
+      <p>
+        <strong>Which design is best and why?</strong> Visualisation 4 (Prison
+        Policy Initiative horizontal bar chart) is often the most impactful. By
+        interleaving US states with independent countries, it shatters the
+        assumption that the US as a whole is just a single outlier. It
+        effectively uses length (the most accurate visual variable for
+        comparison) and color (to highlight US vs. non-US) to tell a compelling,
+        immediate story about the scale of the issue.
+      </p>
+    </div>
+  
+      </section>
+
     </main>
 
     <footer class="site-footer">
       <p>
-        &copy; <span id="year"></span> <span id="your-name">Your Name</span>.
-        Some content/code generated with assistance from GenAI (specifically
-        GitHub Copilot).
+        &copy; <span id="year"></span>
+        <span id="your-name">Nguyen Minh Khoa</span>. Some content/code
+        generated with assistance from GenAI (specifically GitHub Copilot).
       </p>
     </footer>
 
+    <script src="https://d3js.org/d3.v7.min.js"></script>
     <script src="js/nav.js"></script>
+    <script src="js/chart.js"></script>
+  
+    <script src="js/scatter.js"></script>
+    <script src="js/donut.js"></script>
+    <script src="js/bar.js"></script>
+    <script src="js/line.js"></script>
+    <script src="js/shared-constants.js"></script>
+    <script src="js/interactions.js"></script>
+    <script src="js/scatterplot.js"></script>
+    <script src="js/histogram.js"></script>
+    <script src="js/load-data.js"></script>
+
   </body>
 </html>

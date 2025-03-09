@@ -1,16 +1,31 @@
+
 function drawScatterplot(data) {
-  // Set up domains based on data
-  const maxStar = d3.max(data, (d) => d.star);
-  const maxEnergy = d3.max(data, (d) => d.energyConsumption);
+  // Add labels to SVG if not already there
+  const chartHeight = height + margin.top + margin.bottom;
+  const chartWidth = width + margin.left + margin.right;
+  
+  // Create SVG dynamically with viewBox for responsiveness
+  d3.select("#scatterplot").selectAll("*").remove();
+  
+  const innerChartS = d3.select("#scatterplot")
+    .append("svg")
+    .attr("viewBox", `0 0 ${chartWidth} ${chartHeight}`)
+    .append("g")
+    .attr("transform", `translate(${margin.left},${margin.top})`);
 
-  xScaleS.domain([0, maxStar + 0.5]);
-  yScaleS.domain([0, maxEnergy + 50]);
+  const xScaleS = d3.scaleLinear()
+    .domain([0, 8.5]) // Based on the screenshot x-axis (0 to 8 Star Rating)
+    .range([0, width]);
+    
+  const yScaleS = d3.scaleLinear()
+    .domain([0, 2700]) // Based on the screenshot y-axis
+    .range([height, 0]);
 
-  // Set up colour scale domain
-  const screenTechs = Array.from(new Set(data.map((d) => d.screenTech)));
-  colorScale.domain(screenTechs);
+  const colorScale = d3.scaleOrdinal()
+    .domain(["LED", "LCD", "OLED"])
+    .range(["#1f77b4", "#ff7f0e", "#2ca02c"]);
 
-  // Draw the circles
+  // Add dots
   innerChartS
     .selectAll("circle")
     .data(data)
@@ -19,60 +34,77 @@ function drawScatterplot(data) {
     .attr("cy", (d) => yScaleS(d.energyConsumption))
     .attr("r", 5)
     .attr("fill", (d) => colorScale(d.screenTech))
-    .attr("opacity", 0.5)
-    .on("mouseenter", (e, d) => {
-      handleMouseEvents(e, d, "enter");
+    .style("opacity", 0.7)
+    .on("mouseover", function(e, d) {
+        d3.select(this)
+          .transition()
+          .duration(100)
+          .attr("r", 8)
+          .style("opacity", 1)
+          .attr("stroke", "#333")
+          .attr("stroke-width", 2);
+          
+        // Show tooltip exactly like the screenshot with the energy size box
+        showTooltip(`<strong>${d.energyConsumption}</strong><br>Size: ${d.screenSize}"<br>${d.brand.toUpperCase()}`, e);
     })
-    .on("mouseleave", (e, d) => {
-      handleMouseEvents(e, d, "leave");
+    .on("mousemove", moveTooltip)
+    .on("mouseout", function(e, d) {
+        d3.select(this)
+          .transition()
+          .duration(200)
+          .attr("r", 5)
+          .style("opacity", 0.7)
+          .attr("stroke", "none");
+        hideTooltip();
     });
 
-  // Add bottom axis (X axis)
+  // Add Axes
   innerChartS
     .append("g")
     .attr("transform", `translate(0,${height})`)
     .call(d3.axisBottom(xScaleS));
 
-  // X axis label
+  innerChartS
+    .append("g")
+    .call(d3.axisLeft(yScaleS));
+
+  // Add Axis Labels
   innerChartS
     .append("text")
-    .attr("x", width / 2)
-    .attr("y", height + 40)
-    .attr("text-anchor", "middle")
+    .attr("x", width)
+    .attr("y", height + 35)
+    .attr("text-anchor", "end")
+    .style("font-size", "12px")
     .text("Star Rating");
 
-  // Add left axis (Y axis)
-  innerChartS.append("g").call(d3.axisLeft(yScaleS));
-
-  // Y axis label
   innerChartS
     .append("text")
     .attr("transform", "rotate(-90)")
     .attr("x", -height / 2)
-    .attr("y", -40)
+    .attr("y", -45)
     .attr("text-anchor", "middle")
-    .text("Energy Consumption");
-
-  // Add legend
-  const legend = innerChartS
-    .append("g")
-    .attr("transform", `translate(${width + 20}, 20)`);
-
-  screenTechs.forEach((tech, i) => {
-    const row = legend.append("g").attr("transform", `translate(0, ${i * 25})`);
-
-    row
-      .append("rect")
-      .attr("width", 15)
-      .attr("height", 15)
-      .attr("fill", colorScale(tech))
-      .attr("opacity", 0.8);
-
-    row
-      .append("text")
-      .attr("x", 25)
-      .attr("y", 12)
+    .style("font-size", "12px")
+    .text("Labeled Energy Consumption (kWh/year)");
+    
+  // Add Legend
+  const legend = innerChartS.append("g")
+    .attr("transform", `translate(${width - 100}, 20)`);
+    
+  const techs = ["LED", "LCD", "OLED"];
+  
+  techs.forEach((tech, i) => {
+    const legendRow = legend.append("g").attr("transform", `translate(0, ${i * 20})`);
+    
+    legendRow.append("rect")
+      .attr("width", 12)
+      .attr("height", 12)
+      .attr("fill", colorScale(tech));
+      
+    legendRow.append("text")
+      .attr("x", 20)
+      .attr("y", 10)
       .text(tech)
-      .style("font-size", "14px");
+      .style("font-size", "12px")
+      .style("font-family", "sans-serif");
   });
 }

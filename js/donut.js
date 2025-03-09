@@ -1,14 +1,7 @@
 d3.csv("data/tv-tech-donut.csv").then(function(data) {
-    // Parse values
-    data.forEach(d => {
-        d.avgEnergy = +d.avgEnergy;
-    });
+    data.forEach(d => d.avgEnergy = +d.avgEnergy);
 
-    const container = document.getElementById('donut-chart');
-    const margin = 20,
-          width = 800,
-          height = 500;
-    
+    const margin = 40, width = 800, height = 500;
     const radius = Math.min(width, height) / 2 - margin;
 
     const svg = d3.select("#donut-chart")
@@ -19,12 +12,9 @@ d3.csv("data/tv-tech-donut.csv").then(function(data) {
 
     const color = d3.scaleOrdinal()
       .domain(data.map(d => d.screenTech))
-      .range(d3.schemeSet2);
+      .range(["#1f77b4", "#ff7f0e", "#2ca02c"]); // LED, LCD, OLED standard categorical colors
 
-    const pie = d3.pie()
-      .value(d => d.avgEnergy)
-      .sort(null);
-
+    const pie = d3.pie().value(d => d.avgEnergy).sort(null);
     const data_ready = pie(data);
 
     const arc = d3.arc()
@@ -35,6 +25,7 @@ d3.csv("data/tv-tech-donut.csv").then(function(data) {
       .innerRadius(radius * 0.9)
       .outerRadius(radius * 0.9);
 
+    // Draw slices
     svg.selectAll('allSlices')
       .data(data_ready)
       .enter()
@@ -43,22 +34,26 @@ d3.csv("data/tv-tech-donut.csv").then(function(data) {
       .attr('fill', d => color(d.data.screenTech))
       .attr("stroke", "white")
       .style("stroke-width", "2px")
-      .style("opacity", 0.8);
+      .style("opacity", 0.9)
+      .on("mouseover", function(e, d) { 
+          d3.select(this).style("opacity", 0.6); 
+          showTooltip(`<strong>${d.data.screenTech}</strong><br>${d.data.avgEnergy} kWh (Avg)`, e); 
+      })
+      .on("mousemove", moveTooltip)
+      .on("mouseout", function() { 
+          d3.select(this).style("opacity", 0.9); 
+          hideTooltip(); 
+      });
 
+    // Draw Labels directly inside the arcs so they are readable and large
     svg.selectAll('allLabels')
       .data(data_ready)
       .enter()
       .append('text')
         .text(d => d.data.screenTech)
-        .attr('transform', function(d) {
-            const pos = outerArc.centroid(d);
-            const midangle = d.startAngle + (d.endAngle - d.startAngle) / 2;
-            pos[0] = radius * 0.95 * (midangle < Math.PI ? 1 : -1);
-            return `translate(${pos})`;
-        })
-        .style('text-anchor', function(d) {
-            const midangle = d.startAngle + (d.endAngle - d.startAngle) / 2;
-            return (midangle < Math.PI ? 'start' : 'end');
-        })
-        .style("font-size", "12px");
+        .attr("transform", function(d) { return `translate(${arc.centroid(d)})`;  })
+        .style("text-anchor", "middle")
+        .style("font-size", "18px")
+        .style("font-weight", "bold")
+        .style("fill", "white");
 });

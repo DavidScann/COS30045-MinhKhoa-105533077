@@ -13,7 +13,7 @@ d3.csv("data/Ex6_TVdata.csv")
     drawScatterplot(data);
 
     // Draw histogram (assumed from Exercise 6.1 context)
-    drawHistogram(data);
+    initHistogram(data);
   })
   .catch((error) => {
     console.error("Error loading CSV data: ", error);

@@ -133,3 +133,26 @@ figcaption {
     opacity: 0;
     transition: opacity 0.2s;
 }
+
+/* Histogram Filter Buttons */
+.filter-btn {
+  background-color: #d35400; /* matching the image's orange color */
+  color: white;
+  border: none;
+  padding: 8px 24px;
+  font-size: 16px;
+  font-weight: bold;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: opacity 0.2s, transform 0.1s;
+}
+.filter-btn:hover {
+  opacity: 0.9;
+}
+.filter-btn:active {
+  transform: scale(0.98);
+}
+.filter-btn.active {
+  background-color: #f39c12; /* Lighter color for 'All' or active state */
+  color: white;
+}

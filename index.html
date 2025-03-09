@@ -87,7 +87,15 @@
             consider that larger screen real estate often requires more power.
           </p>
           <figure>
+            
+            <div id="filter-buttons" style="margin-bottom: 1rem; display: flex; gap: 10px; justify-content: center;">
+              <button class="filter-btn active" data-tech="All">All</button>
+              <button class="filter-btn" data-tech="LED">LED</button>
+              <button class="filter-btn" data-tech="LCD">LCD</button>
+              <button class="filter-btn" data-tech="OLED">OLED</button>
+            </div>
             <div id="histogram" class="responsive-svg-container chart"></div>
+
             <figcaption>
               Figure 3: Frequency of available screen sizes.
             </figcaption>

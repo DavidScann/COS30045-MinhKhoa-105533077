@@ -10,7 +10,6 @@
   <body>
     <header class="site-header">
       <a href="#" id="logo" class="logo" aria-label="Home" data-target="home">
-        <!-- Power icon image -->
         <img
           src="images/PowerIcon.png"
           alt="Power logo"
@@ -22,20 +21,9 @@
 
       <nav class="top-nav" role="navigation" aria-label="Primary">
         <ul>
-          <li>
-            <a href="#" class="nav-link" data-target="home" aria-current="page"
-              >Home</a
-            >
-          </li>
-          <li>
-            <a href="#" class="nav-link" data-target="televisions"
-              >Televisions</a
-            >
-          </li>
-          
-          <li><a href="#" class="nav-link" data-target="week5">Week 5</a></li>
-          <li><a href="#" class="nav-link" data-target="week6">Week 6</a></li>
-          <li><a href="#" class="nav-link" data-target="week7">Week 7</a></li>
+          <li><a href="#" class="nav-link" data-target="home" aria-current="page">Home</a></li>
+          <li><a href="#" class="nav-link" data-target="televisions">Televisions</a></li>
+          <li><a href="#" class="nav-link" data-target="design">Design Report</a></li>
           <li><a href="#" class="nav-link" data-target="about">About Us</a></li>
         </ul>
       </nav>
@@ -45,16 +33,12 @@
       <section id="home" class="page active" tabindex="-1">
         <h1>Home</h1>
         <p>
-          This site contains placeholder content about appliance energy
-          consumption in the Australian market. Use this simple demo to explore
-          energy factors like standby consumption, appliance size, and
-          efficiency labels.
+          Welcome to the Appliance Energy insight dashboard. Use this interactive platform to explore 
+          energy factors like standby consumption, appliance size, and efficiency labels in the Australian market.
         </p>
         <p>
-          Example: In Australia, televisions and household appliances are
-          significant contributors to residential electricity use; choices such
-          as screen size, display technology, and usage hours affect annual
-          energy consumption (placeholder data).
+          In Australia, televisions and household appliances are significant contributors to residential electricity use; 
+          choices such as screen size, display technology, and usage hours directly affect annual energy consumption.
         </p>
       </section>
 
@@ -71,33 +55,23 @@
           <h2>1. The Landscape of Choice</h2>
           <p>
             When shopping for a new TV, Australian consumers are presented with
-            a variety of display technologies. LED/LCD screens still dominate
-            the market due to their affordability and maturity, but newer
-            technologies like OLED are gaining traction.
+            a variety of display technologies. Standard LED/LCD screens still dominate
+            portions of the market due to affordability, but modern tech like OLED is prominent.
           </p>
           <figure>
-            <img
-              src="visualisations/Types of TV screen technologies available in Australia.png"
-              alt="Bar chart showing the frequency of different TV screen technologies available in Australia, with LED/LCD being the most common."
-              loading="lazy"
-            />
+            <div id="bar-chart" class="responsive-svg-container chart"></div>
             <figcaption>
-              Figure 1: Distribution of TV screen technologies in the Australian
-              market.
+              Figure 1: Distribution of TV screen technologies in the Australian market (55-inch sample).
             </figcaption>
           </figure>
 
           <p>
             The market is also highly competitive, with numerous brands vying
             for attention. Some brands offer a massive range of models, giving
-            consumers plenty of choices but also making the decision-making
-            process more complex.
+            consumers plenty of choices but making decision-making complex.
           </p>
           <figure>
-            <div
-              id="bar-chart-container"
-              class="responsive-svg-container"
-            ></div>
+            <div id="bar-chart-container" class="responsive-svg-container chart"></div>
             <figcaption>
               Figure 2: Number of unique TV models per brand.
             </figcaption>
@@ -110,15 +84,10 @@
             There is a clear trend towards larger screens. The data shows a
             significant concentration of available models in the 50-70 inch
             range. While a cinematic experience is desirable, it's important to
-            consider that larger screen real estate often requires more power to
-            illuminate.
+            consider that larger screen real estate often requires more power.
           </p>
           <figure>
-            <img
-              src="visualisations/Available screen size frequency.png"
-              alt="Histogram showing the frequency of different screen sizes available."
-              loading="lazy"
-            />
+            <div id="histogram" class="responsive-svg-container chart"></div>
             <figcaption>
               Figure 3: Frequency of available screen sizes.
             </figcaption>
@@ -129,111 +98,49 @@
           <h2>3. The Energy Cost</h2>
           <p>
             So, how does technology choice impact your energy bill? The
-            visualization below breaks down power consumption by screen
+            donut chart below breaks down the average power consumption by screen
             technology. It highlights the efficiency differences between
-            standard LEDs and other technologies.
+            standard LEDs and other display architectures.
           </p>
           <figure>
-            <img
-              src="visualisations/Screen technology power consumption.png"
-              alt="Box plot comparing power consumption across different screen technologies."
-              loading="lazy"
-            />
+            <div id="donut-chart" class="responsive-svg-container chart"></div>
             <figcaption>
-              Figure 4: Power consumption ranges by screen technology.
+              Figure 4: Average power consumption by screen technology.
             </figcaption>
           </figure>
 
           <p>
-            Finally, the relationship between size and power is undeniable. As
-            screen size increases, so does power consumption. However, the
-            spread of data points suggests that efficiency varies significantly
-            even within the same size category, reinforcing the importance of
-            checking energy rating labels.
+            Finally, we must look at the official energy efficiency ratings. The interactive
+            scatterplot below shows the relationship between a TV's Star Rating and its
+            energy consumption, color-coded by the underlying screen technology. 
+            <strong>Hover over the points to see details for specific TV models!</strong>
           </p>
           <figure>
-            <img
-              src="visualisations/Relationship between screen size and power use.png"
-              alt="Scatter plot showing the positive correlation between screen size and power consumption."
-              loading="lazy"
-            />
+            <div id="scatterplot" class="responsive-svg-container chart" style="position: relative;"></div>
             <figcaption>
-              Figure 5: Relationship between screen size and power usage.
+              Figure 5: Relationship between energy consumption and Star Rating.
             </figcaption>
           </figure>
+        </article>
 
+        <article class="story-section">
+          <h2>4. The Broader Impact: Electricity Prices</h2>
           <p>
-            It is also worth noting that energy efficiency can vary by
-            manufacturer. Some brands may prioritize performance or brightness
-            over energy savings. The chart below illustrates the top 10 brands
-            associated with higher energy consumption.
+            Energy efficiency is more critical than ever. As the wholesale market fluctuates, 
+            the cost to power your home entertainment system can vary. The chart below illustrates 
+            the average spot power prices over the past two decades.
           </p>
           <figure>
-            <img
-              src="visualisations/Top 10 energy consuming brands.png"
-              alt="Bar chart listing the top 10 brands with the highest energy consumption."
-              loading="lazy"
-            />
+            <div id="line-chart" class="responsive-svg-container chart"></div>
             <figcaption>
-              Figure 6: Top 10 energy consuming tv brands.
+              Figure 6: Historical spot power prices (1998-2024).
             </figcaption>
           </figure>
         </article>
       </section>
 
-      <section id="about" class="page" tabindex="-1" hidden>
-        <h1>About Us</h1>
-        <p>
-          Placeholder About Us content. This project is a simple assignment
-          demonstration for appliance energy consumption information in the
-          Australian market.
-        </p>
-        <!<!-- Footer must include your name and a GenAI acknowledgement if used. -->
-      </section>
-    
-      <section id="week5" class="page" tabindex="-1" hidden>
-        <h1>Exercise 5: Multi-chart webpage</h1>
-        <p>A collection of different D3 chart types based on TV energy consumption and electricity prices data.</p>
-        <div class="chart-container">
-            <section class="chart-section" id="scatter-section-w5">
-                <h2>Scatter Plot</h2>
-                <p>Energy consumption vs. Star rating for TVs.</p>
-                <div id="scatter-chart" class="chart"></div>
-            </section>
-            <section class="chart-section" id="donut-section">
-                <h2>Donut Chart</h2>
-                <p>Average energy consumption for different screen technologies.</p>
-                <div id="donut-chart" class="chart"></div>
-            </section>
-            <section class="chart-section" id="bar-section">
-                <h2>Bar Chart</h2>
-                <p>Number of 55-inch TVs by screen technology.</p>
-                <div id="bar-chart" class="chart"></div>
-            </section>
-            <section class="chart-section" id="line-section">
-                <h2>Line Chart</h2>
-                <p>Spot power prices from 1998 to 2024.</p>
-                <div id="line-chart" class="chart"></div>
-            </section>
-        </div>
-      </section>
-
-      <section id="week6" class="page" tabindex="-1" hidden>
-        <h1>Exercise 6.2: Interactive Scatterplot Tooltips</h1>
-        <p>Explore the relationship between energy consumption, star ratings, screen size, and screen type.</p>
-        <div class="chart-container">
-          <section class="chart-section" id="scatter-section">
-            <h2>Energy Consumption by Star Rating</h2>
-            <div id="scatterplot" class="chart"></div>
-          </section>
-          <section class="chart-section" id="histogram-section">
-            <h2>Energy Consumption Histogram</h2>
-            <div id="histogram" class="chart"></div>
-          </section>
-        </div>
-      </section>
-
-      <section id="week7" class="page" tabindex="-1" hidden>
+      <section id="design" class="page" tabindex="-1" hidden>
+        
         
     <h1>Exercise 7.1 Data Visualisation Design</h1>
     <p>
@@ -396,31 +303,39 @@
       </p>
     </div>
   
+      
       </section>
 
+      <section id="about" class="page" tabindex="-1" hidden>
+        <h1>About Us</h1>
+        <p>
+          This project is an advanced data visualization assignment analyzing 
+          appliance energy consumption within the Australian market. We utilize 
+          D3.js to bring static datasets to life.
+        </p>
+      </section>
     </main>
 
     <footer class="site-footer">
       <p>
         &copy; <span id="year"></span>
         <span id="your-name">Nguyen Minh Khoa</span>. Some content/code
-        generated with assistance from GenAI (specifically GitHub Copilot).
+        generated with assistance from GenAI.
       </p>
     </footer>
 
     <script src="https://d3js.org/d3.v7.min.js"></script>
     <script src="js/nav.js"></script>
     <script src="js/chart.js"></script>
-  
-    <script src="js/scatter.js"></script>
+    <!-- Removed redundant scatter.js to avoid duplicate logic -->
     <script src="js/donut.js"></script>
     <script src="js/bar.js"></script>
     <script src="js/line.js"></script>
+    
     <script src="js/shared-constants.js"></script>
     <script src="js/interactions.js"></script>
     <script src="js/scatterplot.js"></script>
     <script src="js/histogram.js"></script>
     <script src="js/load-data.js"></script>
-
   </body>
 </html>

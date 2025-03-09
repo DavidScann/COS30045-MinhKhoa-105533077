@@ -1,8 +1,7 @@
 const innerChartH = d3
   .select("#histogram")
   .append("svg")
-  .attr("width", width + margin.left + margin.right)
-  .attr("height", height + margin.top + margin.bottom)
+  .attr("viewBox", `0 0 ${width + margin.left + margin.right} ${height + margin.top + margin.bottom}`)
   .append("g")
   .attr("transform", `translate(${margin.left},${margin.top})`);
 
@@ -10,12 +9,12 @@ const xScaleH = d3.scaleLinear().range([0, width]);
 const yScaleH = d3.scaleLinear().range([height, 0]);
 
 function drawHistogram(data) {
-  const maxEnergy = d3.max(data, (d) => d.energyConsumption);
-  xScaleH.domain([0, maxEnergy + 50]);
+  const maxEnergy = d3.max(data, (d) => d.screenSize);
+  xScaleH.domain([0, maxEnergy * 1.1]);
 
   const histogram = d3
     .histogram()
-    .value((d) => d.energyConsumption)
+    .value((d) => d.screenSize)
     .domain(xScaleH.domain())
     .thresholds(xScaleH.ticks(20));
 
@@ -45,7 +44,7 @@ function drawHistogram(data) {
     .attr("x", width / 2)
     .attr("y", height + 40)
     .attr("text-anchor", "middle")
-    .text("Energy Consumption");
+    .text("Screen Size");
 
   innerChartH.append("g").call(d3.axisLeft(yScaleH));
 

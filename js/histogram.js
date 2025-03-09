@@ -32,7 +32,10 @@ function drawHistogram(data) {
     )
     .attr("width", (d) => Math.max(0, xScaleH(d.x1) - xScaleH(d.x0) - 1))
     .attr("height", (d) => height - yScaleH(d.length))
-    .style("fill", "steelblue");
+    .style("fill", "steelblue")
+    .on("mouseover", function(e, d) { d3.select(this).style("fill", "var(--brand, #0b5fff)"); showTooltip(`<strong>Size: ${d.x0}" - ${d.x1}"</strong><br>${d.length} TVs`, e); })
+    .on("mousemove", moveTooltip)
+    .on("mouseout", function() { d3.select(this).style("fill", "steelblue"); hideTooltip(); });
 
   innerChartH
     .append("g")

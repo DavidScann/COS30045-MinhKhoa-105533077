@@ -2,7 +2,28 @@ d3.csv("data/electricity-prices.csv").then(function(data) {
     data.forEach(d => {
         d.year = d3.timeParse("%Y")(d.year);
         d.price = +d.price;
-    });
+    
+    svg.selectAll("myCircles")
+      .data(data)
+      .enter()
+      .append("circle")
+        .attr("fill", "#69b3a2")
+        .attr("stroke", "none")
+        .attr("cx", d => x(d.date))
+        .attr("cy", d => y(d.price))
+        .attr("r", 4)
+        .style("opacity", 0)
+        .on("mouseover", function(e, d) { 
+            d3.select(this).style("opacity", 1).attr("r", 6); 
+            showTooltip(`<strong>${d3.timeFormat("%b %Y")(d.date)}</strong><br>$${d.price}`, e); 
+        })
+        .on("mousemove", moveTooltip)
+        .on("mouseout", function() { 
+            d3.select(this).style("opacity", 0).attr("r", 4); 
+            hideTooltip(); 
+        });
+
+});
 
     const container = document.getElementById('line-chart');
     const margin = {top: 40, right: 40, bottom: 60, left: 60},
@@ -47,4 +68,25 @@ d3.csv("data/electricity-prices.csv").then(function(data) {
         .x(d => x(d.year))
         .y(d => y(d.price))
       );
+
+    svg.selectAll("myCircles")
+      .data(data)
+      .enter()
+      .append("circle")
+        .attr("fill", "#69b3a2")
+        .attr("stroke", "none")
+        .attr("cx", d => x(d.date))
+        .attr("cy", d => y(d.price))
+        .attr("r", 4)
+        .style("opacity", 0)
+        .on("mouseover", function(e, d) { 
+            d3.select(this).style("opacity", 1).attr("r", 6); 
+            showTooltip(`<strong>${d3.timeFormat("%b %Y")(d.date)}</strong><br>$${d.price}`, e); 
+        })
+        .on("mousemove", moveTooltip)
+        .on("mouseout", function() { 
+            d3.select(this).style("opacity", 0).attr("r", 4); 
+            hideTooltip(); 
+        });
+
 });

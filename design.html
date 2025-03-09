@@ -1,0 +1,129 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Appliance Energy — Design Report</title>
+    <link rel="stylesheet" href="css/styles.css" />
+    <style>
+      .design-container {
+        max-width: 900px;
+        margin: 2rem auto;
+        padding: 0 1rem;
+      }
+      .vis-section {
+        background: #fff;
+        border-radius: 8px;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        padding: 2rem;
+        margin-bottom: 2rem;
+      }
+      .vis-section h2 {
+        color: var(--brand);
+        margin-top: 0;
+      }
+      .vis-section p {
+        line-height: 1.6;
+        color: var(--text);
+      }
+      .vis-section a {
+        color: var(--brand);
+        text-decoration: none;
+      }
+      .vis-section a:hover {
+        text-decoration: underline;
+      }
+      .data-demo {
+        margin-top: 1rem;
+        padding: 1rem;
+        background: #f8f9fa;
+        border-left: 4px solid var(--brand);
+      }
+    </style>
+  </head>
+
+  <body>
+    <header class="site-header">
+      <a href="index.html" id="logo" class="logo" aria-label="Home">
+        <img
+          src="images/PowerIcon.png"
+          alt="Power logo"
+          width="36"
+          height="36"
+          aria-hidden="true"
+        />
+      </a>
+
+      <nav class="top-nav" role="navigation" aria-label="Primary">
+        <ul>
+          <li><a href="index.html#home" class="nav-link">Home</a></li>
+          <li><a href="index.html#televisions" class="nav-link">Televisions</a></li>
+          <li><a href="design.html" class="nav-link active" aria-current="page">Design Report</a></li>
+          <li><a href="index.html#about" class="nav-link">About Us</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <main class="design-container">
+      <h1>Data Visualisation Design Report</h1>
+      <p class="intro-text">
+        An analysis of external data visualisations communicating the size of prison populations,
+        drawing on sources such as Pew Research, World Population Review, and the Prison Policy Initiative.
+      </p>
+
+      <div class="vis-section">
+        <h2>1. Metrocosm Prison Population Map</h2>
+        <p><strong>Source:</strong> <a href="https://metrocosm.com/prison-population-map/" target="_blank">metrocosm.com (Archived)</a></p>
+        <p><strong>Purpose:</strong> To show the geographical distribution and scale of the US prison population.</p>
+        <p><strong>Kind of chart:</strong> Thematic Map (Proportional symbol map).</p>
+        <p><strong>Encoding:</strong> Uses area/size of symbols or color intensity to encode the number of prisoners per region/state.</p>
+        <p><strong>Interactive features:</strong> Often includes tooltips on hover to show exact numbers, and sometimes a time slider.</p>
+        <p><strong>Effectiveness:</strong> Strong visual contrast and geographical context to highlight regions with disproportionately high incarceration.</p>
+      </div>
+
+      <div class="vis-section">
+        <h2>2. Pew Research Line Chart</h2>
+        <p><strong>Source:</strong> <a href="https://www.pewresearch.org/short-reads/2021/08/16/americas-incarceration-rate-lowest-since-1995" target="_blank">Pew Research Center</a></p>
+        <p><strong>Purpose:</strong> To illustrate the trend of the US incarceration rate over time, specifically showing its decline since 1995.</p>
+        <p><strong>Kind of chart:</strong> Line chart.</p>
+        <p><strong>Encoding:</strong> X-axis encodes time (years), Y-axis encodes the incarceration rate (per 100k people).</p>
+        <p><strong>Interactive features:</strong> Typically static, though may have hover effects for specific data points.</p>
+        <p><strong>Effectiveness:</strong> Clear communication of temporal trends. The downward slope effectively communicates the "lowest since 1995" narrative.</p>
+      </div>
+
+      <div class="vis-section">
+        <h2>3. World Population Review: Global Rates</h2>
+        <p><strong>Source:</strong> <a href="https://worldpopulationreview.com/country-rankings/incarceration-rates-by-country" target="_blank">World Population Review</a></p>
+        <p><strong>Purpose:</strong> To compare incarceration rates globally.</p>
+        <p><strong>Kind of chart:</strong> Interactive Choropleth Map / Data Table.</p>
+        <p><strong>Encoding:</strong> Color saturation on the map encodes the incarceration rate per 100,000 population.</p>
+        <p><strong>Interactive features:</strong> Hoverable tooltips on map regions reveal the exact country rates. Searchable and sortable data tables below.</p>
+        <p><strong>Effectiveness:</strong> Extremely effective for exploratory analysis, allowing users to benchmark specific countries against global trends.</p>
+      </div>
+
+      <div class="vis-section">
+        <h2>4. Prison Policy Initiative (2024)</h2>
+        <p><strong>Source:</strong> <a href="https://www.prisonpolicy.org/global/2024.html" target="_blank">Prison Policy Initiative</a></p>
+        <p><strong>Purpose:</strong> Highlighting how US states compare to independent countries regarding incarceration.</p>
+        <p><strong>Kind of chart:</strong> Horizontal Bar Chart.</p>
+        <p><strong>Encoding:</strong> Length of bar encodes the incarceration rate. Distinct colors separate US states from international nations.</p>
+        <p><strong>Interactive features:</strong> Often static in reports, occasionally providing tooltips.</p>
+        <p><strong>Effectiveness:</strong> Highly persuasive. By interleaving US states with countries, it contextualizes state-level policies on a global scale.</p>
+        
+        <div class="data-demo">
+          <strong>Data Insight:</strong>
+          <p>
+            Based on the 2024 data from the Prison Policy Initiative, the United States continues to incarcerate more people per capita than any other nation, with rates often exceeding 500 per 100,000 residents in states like Louisiana and Mississippi, compared to nations like the UK or Canada which hover around 130-140 per 100,000.
+          </p>
+        </div>
+      </div>
+    </main>
+
+    <footer class="site-footer">
+      <p>
+        &copy; <span id="year"></span> Nguyen Minh Khoa. Some content/code generated with assistance from GenAI.
+      </p>
+    </footer>
+    <script>document.getElementById("year").textContent = new Date().getFullYear();</script>
+  </body>
+</html>

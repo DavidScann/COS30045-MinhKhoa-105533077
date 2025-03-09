@@ -46,5 +46,8 @@ d3.csv("data/tv-55inch-bar.csv").then(function(data) {
         .attr("y", d => y(d.count))
         .attr("width", x.bandwidth())
         .attr("height", d => height - y(d.count))
-        .attr("fill", "#69b3a2");
+        .attr("fill", "#69b3a2")
+        .on("mouseover", function(e, d) { d3.select(this).style("fill", "var(--brand, #0b5fff)"); showTooltip(`<strong>${d.screenTech}</strong><br>${d.count} models`, e); })
+        .on("mousemove", moveTooltip)
+        .on("mouseout", function() { d3.select(this).style("fill", "#69b3a2"); hideTooltip(); });
 });

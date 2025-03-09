@@ -44,7 +44,10 @@ const createBarChart = (data) => {
     .attr("height", yScale.bandwidth())
     .attr("fill", "var(--brand, #0b5fff)")
     .attr("rx", 4) // rounded corners
-    .attr("ry", 4);
+    .attr("ry", 4)
+    .on("mouseover", function(e, d) { d3.select(this).attr("opacity", 0.7); showTooltip(`<strong>${d.brand.toUpperCase()}</strong><br>${d.count} models`, e); })
+    .on("mousemove", moveTooltip)
+    .on("mouseout", function() { d3.select(this).attr("opacity", 1); hideTooltip(); });
 
   // Add brand labels
   barAndLabel.append("text")

@@ -6,8 +6,8 @@ d3.csv("data/tv-tech-donut.csv").then(function(data) {
 
     const container = document.getElementById('donut-chart');
     const margin = 20,
-          width = container.clientWidth || 500,
-          height = container.clientHeight || 400;
+          width = 800 || 500,
+          height = 500 || 400;
     
     const radius = Math.min(width, height) / 2 - margin;
 

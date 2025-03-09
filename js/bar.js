@@ -5,8 +5,8 @@ d3.csv("data/tv-55inch-bar.csv").then(function(data) {
 
     const container = document.getElementById('bar-chart');
     const margin = {top: 20, right: 20, bottom: 40, left: 50},
-          width = container.clientWidth || 500 - margin.left - margin.right,
-          height = container.clientHeight || 400 - margin.top - margin.bottom;
+          width = 800 || 500 - margin.left - margin.right,
+          height = 500 || 400 - margin.top - margin.bottom;
 
     const svg = d3.select("#bar-chart")
       .append("svg")

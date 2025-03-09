@@ -8,8 +8,8 @@ d3.csv("data/tv-scatter.csv").then(function(data) {
     // Dimensions
     const container = document.getElementById('scatter-chart');
     const margin = {top: 20, right: 20, bottom: 50, left: 50},
-          width = container.clientWidth || 500 - margin.left - margin.right,
-          height = container.clientHeight || 400 - margin.top - margin.bottom;
+          width = 800 || 500 - margin.left - margin.right,
+          height = 500 || 400 - margin.top - margin.bottom;
 
     const svg = d3.select("#scatter-chart")
       .append("svg")

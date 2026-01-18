@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Appliance Energy — Home</title>
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <header class="site-header">
+    <a href="#" id="logo" class="logo" aria-label="Home" data-target="home">
+      <!-- Power icon image -->
+      <img src="images/PowerIcon.png" alt="Power logo" width="36" height="36" aria-hidden="true">
+    </a>
+
+    <nav class="top-nav" role="navigation" aria-label="Primary">
+      <ul>
+        <li><a href="#" class="nav-link" data-target="home" aria-current="page">Home</a></li>
+        <li><a href="#" class="nav-link" data-target="televisions">Televisions</a></li>
+        <li><a href="#" class="nav-link" data-target="about">About Us</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <section id="home" class="page active" tabindex="-1">
+      <h1>Home</h1>
+      <p>This site contains placeholder content about appliance energy consumption in the Australian market. Use this simple demo to explore energy factors like standby consumption, appliance size, and efficiency labels.</p>
+      <p>Example: In Australia, televisions and household appliances are significant contributors to residential electricity use; choices such as screen size, display technology, and usage hours affect annual energy consumption (placeholder data).</p>
+    </section>
+
+    <section id="televisions" class="page" tabindex="-1" hidden>
+      <h1>Televisions</h1>
+      <p>Placeholder content: Televisions' energy use varies by size and technology. Typical TVs might use between 50–200 kWh/year depending on screening habits and power mode. Consider energy labels and OLED vs LED differences when estimating usage.</p>
+      <ul>
+        <li>Screen size and resolution — larger screens often use more power.</li>
+        <li>Technology — LED/LCD vs OLED can change standby and active power draw.</li>
+        <li>Standby consumption — look for low-standby models.</li>
+      </ul>
+    </section>
+
+    <section id="about" class="page" tabindex="-1" hidden>
+      <h1>About Us</h1>
+      <p>Placeholder About Us content. This project is a simple assignment demonstration for appliance energy consumption information in the Australian market.</p>
+      <p class="ack">Footer must include your name and a GenAI acknowledgement if used.</p>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <p>&copy; <span id="year"></span> <span id="your-name">Your Name</span>. Some content/code generated with assistance from GenAI (specifically GitHub Copilot).</p>
+  </footer>
+
+  <script src="js/nav.js"></script>
+</body>
+</html>

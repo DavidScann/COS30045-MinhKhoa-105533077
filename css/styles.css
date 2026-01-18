@@ -1,0 +1,35 @@
+/* Simple stylesheet with CSS variables for easy palette changes */
+:root{
+  --brand: #0b5fff; /* primary brand color - change to match logo */
+  --accent: #ff6b35;
+  --bg: #ffffff;
+  --text: #1a1a1a;
+  --muted: #666666;
+}
+
+*{box-sizing:border-box}
+body{font-family:system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,'Helvetica Neue',Arial; margin:0;color:var(--text);background:var(--bg);line-height:1.4}
+
+.site-header{display:flex;align-items:center;gap:1rem;padding:0.75rem 1rem;border-bottom:1px solid #eee;background:linear-gradient(180deg,rgba(0,0,0,0.02),transparent)}
+.logo{color:var(--brand);display:inline-flex;align-items:center;text-decoration:none}
+.logo svg{display:block}
+.logo img{width:36px;height:36px;display:block}
+
+.top-nav ul{list-style:none;margin:0;padding:0;display:flex;gap:0.25rem}
+.top-nav a{display:inline-block;padding:0.5rem 0.75rem;color:var(--text);text-decoration:none;border-radius:6px;transition:background .12s,color .12s,transform .15s}
+.top-nav a:hover{background:rgba(11,95,255,0.08);color:var(--brand);transform:translateY(-1px)}
+.top-nav a:focus{outline:2px solid rgba(11,95,255,0.25);outline-offset:2px}
+.top-nav a[aria-current="page"], .top-nav a.active{background:var(--brand);color:white}
+
+main{padding:1rem}
+.page{max-width:900px;margin:0 auto}
+.page[hidden]{display:none}
+
+.site-footer{margin-top:2rem;padding:1rem;border-top:1px solid #eee;text-align:center;color:var(--muted)}
+
+/* Responsive: small screens */
+@media (max-width:600px){
+  .site-header{gap:0.5rem}
+  .top-nav ul{gap:0}
+  .top-nav a{padding:0.5rem}
+}

@@ -1,3 +1,6 @@
+# Audience
+This project is intended to be a visualisation of the data provided by **energyrating.gov.au**, displaying information about energy efficiency of Televisions as well as several other information regarding the electrical use of Televisions in Australia and nearby regions. This is meant to be a project to assist those who are interested in data as well as the effiency of Televisions and electricity in general (conservationists).
+
 ## Data Story
 
 ### About the Data

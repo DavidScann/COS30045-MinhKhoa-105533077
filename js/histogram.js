@@ -16,8 +16,8 @@ const innerChartH = d3
 const xScaleH = d3.scaleLinear().range([0, widthH]);
 const yScaleH = d3.scaleLinear().range([heightH, 0]);
 
-const xAxisGroup = innerChartH.append("g").attr("transform", `translate(0,${heightH})`);
-const yAxisGroup = innerChartH.append("g");
+const xAxisGroup = innerChartH.append("g").attr("transform", `translate(0,${heightH})`).attr("class", "x-axis");
+const yAxisGroup = innerChartH.append("g").attr("class", "y-axis");
 
 // Add labels
 innerChartH.append("text")
@@ -28,10 +28,11 @@ innerChartH.append("text")
   .text("Labeled Energy Consumption (kWh/year)");
 
 innerChartH.append("text")
-  .attr("x", 0)
-  .attr("y", -10)
-  .attr("text-anchor", "middle")
-  .style("font-size", "12px")
+  .attr("x", -marginH.left + 20)
+  .attr("y", -20)
+  .attr("text-anchor", "start")
+  .style("font-size", "14px")
+  .style("fill", "#333")
   .text("Frequency");
 
 let fullData = [];
@@ -49,10 +50,10 @@ function initHistogram(data) {
     
     // Update active class
     d3.selectAll(".filter-btn").classed("active", false);
-    d3.selectAll(".filter-btn").style("background-color", "#d35400"); // reset
+    
     
     d3.select(this).classed("active", true);
-    d3.select(this).style("background-color", "#f39c12"); // highlight
+    
     
     // Filter and redraw
     updateHistogram(tech);
@@ -78,7 +79,9 @@ function updateHistogram(techFilter) {
 
   // Update Y scale
   yScaleH.domain([0, d3.max(bins, d => d.length) || 0]);
-  yAxisGroup.transition().duration(500).call(d3.axisLeft(yScaleH));
+  yAxisGroup.transition().duration(500).call(d3.axisLeft(yScaleH).ticks(13));
+  yAxisGroup.selectAll("path").remove();
+  xAxisGroup.selectAll("path").remove();
 
   // Bind data
   const rects = innerChartH.selectAll("rect.bar").data(bins);

@@ -7,37 +7,77 @@
     <link rel="stylesheet" href="css/styles.css" />
     <style>
       .design-container {
-        max-width: 900px;
+        max-width: 860px;
         margin: 2rem auto;
-        padding: 0 1rem;
+        padding: 0 1.5rem 4rem;
       }
-      .vis-section {
-        background: #fff;
-        border-radius: 8px;
-        box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+      .design-container h1 {
+        font-size: 2rem;
+        color: #1a1a1a;
+        margin-bottom: 0.25rem;
+      }
+      .design-container > .subtitle {
+        color: var(--muted);
+        font-size: 1rem;
+        margin-bottom: 2.5rem;
+      }
+      .vis-card {
+        border: 1px solid #e8e8e8;
+        border-radius: 10px;
         padding: 2rem;
         margin-bottom: 2rem;
+        background: #fff;
       }
-      .vis-section h2 {
+      .vis-card h2 {
         color: var(--brand);
-        margin-top: 0;
+        font-size: 1.25rem;
+        margin: 0 0 0.25rem;
       }
-      .vis-section p {
-        line-height: 1.6;
-        color: var(--text);
+      .vis-source {
+        font-size: 0.85rem;
+        color: var(--muted);
+        margin-bottom: 1.5rem;
       }
-      .vis-section a {
+      .vis-source a {
         color: var(--brand);
         text-decoration: none;
       }
-      .vis-section a:hover {
+      .vis-source a:hover {
         text-decoration: underline;
       }
-      .data-demo {
-        margin-top: 1rem;
-        padding: 1rem;
-        background: #f8f9fa;
+      .qa-table {
+        width: 100%;
+        border-collapse: collapse;
+        font-size: 0.95rem;
+      }
+      .qa-table tr + tr td {
+        border-top: 1px solid #f0f0f0;
+      }
+      .qa-table td {
+        padding: 0.65rem 0.75rem;
+        vertical-align: top;
+        line-height: 1.55;
+      }
+      .qa-table td:first-child {
+        width: 28%;
+        font-weight: 600;
+        color: #444;
+        white-space: nowrap;
+      }
+      .conclusion-card {
+        background: #f4f7ff;
         border-left: 4px solid var(--brand);
+        border-radius: 0 10px 10px 0;
+        padding: 1.75rem 2rem;
+        margin-top: 2.5rem;
+      }
+      .conclusion-card h2 {
+        margin-top: 0;
+        color: var(--brand);
+      }
+      .conclusion-card p {
+        line-height: 1.65;
+        color: var(--text);
       }
     </style>
   </head>
@@ -53,77 +93,506 @@
           aria-hidden="true"
         />
       </a>
-
       <nav class="top-nav" role="navigation" aria-label="Primary">
         <ul>
-          <li><a href="index.html#home" class="nav-link">Home</a></li>
-          <li><a href="index.html#televisions" class="nav-link">Televisions</a></li>
-          <li><a href="design.html" class="nav-link active" aria-current="page">Design Report</a></li>
-          <li><a href="index.html#about" class="nav-link">About Us</a></li>
+          <li><a href="index.html" class="nav-link">Home</a></li>
+          <li><a href="index.html" class="nav-link">Televisions</a></li>
+          <li>
+            <a href="design.html" class="nav-link active" aria-current="page"
+              >Design Report</a
+            >
+          </li>
+          <li><a href="index.html" class="nav-link">About Us</a></li>
         </ul>
       </nav>
     </header>
 
     <main class="design-container">
       <h1>Data Visualisation Design Report</h1>
-      <p class="intro-text">
-        An analysis of external data visualisations communicating the size of prison populations,
-        drawing on sources such as Pew Research, World Population Review, and the Prison Policy Initiative.
+      <p class="subtitle">
+        An analysis of six visualisations communicating the scale and context of
+        prison populations in the United States. Each is evaluated on purpose,
+        chart type, data encoding, interactivity, persuasive technique, and
+        overall effectiveness.
       </p>
 
-      <div class="vis-section">
-        <h2>1. Metrocosm Prison Population Map</h2>
-        <p><strong>Source:</strong> <a href="https://metrocosm.com/prison-population-map/" target="_blank">metrocosm.com (Archived)</a></p>
-        <p><strong>Purpose:</strong> To show the geographical distribution and scale of the US prison population.</p>
-        <p><strong>Kind of chart:</strong> Thematic Map (Proportional symbol map).</p>
-        <p><strong>Encoding:</strong> Uses area/size of symbols or color intensity to encode the number of prisoners per region/state.</p>
-        <p><strong>Interactive features:</strong> Often includes tooltips on hover to show exact numbers, and sometimes a time slider.</p>
-        <p><strong>Effectiveness:</strong> Strong visual contrast and geographical context to highlight regions with disproportionately high incarceration.</p>
+      <!-- VIS 1 -->
+      <div class="vis-card">
+        <h2>Visualisation 1 — Metrocosm: US Prison Population Map</h2>
+        <p class="vis-source">
+          Source:
+          <a
+            href="https://metrocosm.com/prison-population-map/"
+            target="_blank"
+            rel="noopener"
+            >metrocosm.com</a
+          >
+          (circa 2016 — link no longer active)
+        </p>
+        <table class="qa-table">
+          <tr>
+            <td>Purpose</td>
+            <td>
+              To show the geographical distribution of the US prison population
+              across states, making regional concentrations of incarceration
+              immediately visible without requiring the reader to interpret a
+              table or ranked list.
+            </td>
+          </tr>
+          <tr>
+            <td>Chart type</td>
+            <td>
+              Proportional symbol map (thematic map). Each US state is
+              represented by a symbol whose size encodes the number of
+              incarcerated people in that state.
+            </td>
+          </tr>
+          <tr>
+            <td>Data encoding</td>
+            <td>
+              Geography (position) encodes state location, giving the reader
+              spatial context. Symbol area encodes the raw prison population
+              count, so states with larger populations — California, Texas,
+              Florida — produce visually dominant symbols. Colour is used
+              secondarily to distinguish categories or reinforce magnitude.
+            </td>
+          </tr>
+          <tr>
+            <td>Interactive features</td>
+            <td>
+              Unsure; website has since gone down. However, it can be inferred that there are hover tooltips reveal the exact population figure for each state.
+              Some versions of the map included a time slider allowing the
+              reader to animate how state populations changed over years,
+              turning a static snapshot into a temporal narrative.
+            </td>
+          </tr>
+          <tr>
+            <td>Persuasive features</td>
+            <td>
+              The map makes the sheer geographic breadth of mass incarceration
+              visceral — there is no state with no symbol. The proportional
+              sizing means that heavily-incarcerating states like Texas and
+              California are impossible to ignore. The geographic layout also
+              exploits the reader's pre-existing mental model of the US map, so
+              regional disparities require almost no explanation.
+            </td>
+          </tr>
+        </table>
       </div>
 
-      <div class="vis-section">
-        <h2>2. Pew Research Line Chart</h2>
-        <p><strong>Source:</strong> <a href="https://www.pewresearch.org/short-reads/2021/08/16/americas-incarceration-rate-lowest-since-1995" target="_blank">Pew Research Center</a></p>
-        <p><strong>Purpose:</strong> To illustrate the trend of the US incarceration rate over time, specifically showing its decline since 1995.</p>
-        <p><strong>Kind of chart:</strong> Line chart.</p>
-        <p><strong>Encoding:</strong> X-axis encodes time (years), Y-axis encodes the incarceration rate (per 100k people).</p>
-        <p><strong>Interactive features:</strong> Typically static, though may have hover effects for specific data points.</p>
-        <p><strong>Effectiveness:</strong> Clear communication of temporal trends. The downward slope effectively communicates the "lowest since 1995" narrative.</p>
+      <!-- VIS 2 -->
+      <div class="vis-card">
+        <h2>
+          Visualisation 2 — Pew Research: America's Incarceration Rate Over Time
+        </h2>
+        <p class="vis-source">
+          Source:
+          <a
+            href="https://www.pewresearch.org/short-reads/2021/08/16/americas-incarceration-rate-lowest-since-1995"
+            target="_blank"
+            rel="noopener"
+            >Pew Research Center, 2021</a
+          >
+        </p>
+        <table class="qa-table">
+          <tr>
+            <td>Purpose</td>
+            <td>
+              To illustrate the long-term trend in the US incarceration rate,
+              framing the 2019 decline as historically significant by anchoring
+              it against 1995 — the year the current rate was last at the same
+              level.
+            </td>
+          </tr>
+          <tr>
+            <td>Chart type</td>
+            <td>
+              Line chart (single series). A simple, continuous line traces the
+              incarceration rate per 100,000 adults from the 1970s through 2019.
+            </td>
+          </tr>
+          <tr>
+            <td>Data encoding</td>
+            <td>
+              The x-axis encodes time (years), and the y-axis encodes the
+              incarceration rate per 100,000 adult residents. The steep rise
+              from the 1970s to the peak around 2006–2008 (1,000 per 100,000)
+              and the subsequent decline are directly readable from the slope.
+              Annotations mark the peak and the 2019 endpoint (810 per 100,000),
+              directly labelling the most newsworthy values.
+            </td>
+          </tr>
+          <tr>
+            <td>Interactive features</td>
+            <td>
+              Largely static; published as an image embedded in a short-read
+              article. The chart does not have hover functionality. The
+              interactivity is in the surrounding article text, which provides
+              context and links to underlying BJS data.
+            </td>
+          </tr>
+          <tr>
+            <td>Persuasive features</td>
+            <td>
+              The chart is deliberately headlined "lowest since 1995," and the
+              y-axis is scaled to make the peak visually dramatic. The long
+              x-axis — spanning five decades — makes the recent decline look
+              modest compared to the decades-long rise, implicitly suggesting
+              the problem is far from solved. The simplicity of a single line
+              gives no room for the reader to deflect attention to other
+              variables.
+            </td>
+          </tr>
+        </table>
       </div>
 
-      <div class="vis-section">
-        <h2>3. World Population Review: Global Rates</h2>
-        <p><strong>Source:</strong> <a href="https://worldpopulationreview.com/country-rankings/incarceration-rates-by-country" target="_blank">World Population Review</a></p>
-        <p><strong>Purpose:</strong> To compare incarceration rates globally.</p>
-        <p><strong>Kind of chart:</strong> Interactive Choropleth Map / Data Table.</p>
-        <p><strong>Encoding:</strong> Color saturation on the map encodes the incarceration rate per 100,000 population.</p>
-        <p><strong>Interactive features:</strong> Hoverable tooltips on map regions reveal the exact country rates. Searchable and sortable data tables below.</p>
-        <p><strong>Effectiveness:</strong> Extremely effective for exploratory analysis, allowing users to benchmark specific countries against global trends.</p>
+      <!-- VIS 3 -->
+      <div class="vis-card">
+        <h2>
+          Visualisation 3 — World Population Review: Global Incarceration Rates
+          by Country
+        </h2>
+        <p class="vis-source">
+          Source:
+          <a
+            href="https://worldpopulationreview.com/country-rankings/incarceration-rates-by-country"
+            target="_blank"
+            rel="noopener"
+            >worldpopulationreview.com</a
+          >
+        </p>
+        <table class="qa-table">
+          <tr>
+            <td>Purpose</td>
+            <td>
+              To allow readers to compare the US incarceration rate against
+              every other country in the world, both as an exploratory tool and
+              as evidence that the US rate is outlying even by international
+              standards.
+            </td>
+          </tr>
+          <tr>
+            <td>Chart type</td>
+            <td>
+              Choropleth world map combined with a sortable, searchable data
+              table below. The map provides geographic overview; the table
+              enables precise lookup and ranking.
+            </td>
+          </tr>
+          <tr>
+            <td>Data encoding</td>
+            <td>
+              On the map, colour saturation encodes the incarceration rate per
+              100,000 population — darker shades indicate higher rates, with the
+              US appearing as one of the most saturated countries. The
+              sequential colour scheme makes global outliers immediately
+              visible. In the table, the rate is encoded numerically, allowing
+              exact comparisons that the map colour alone cannot convey.
+            </td>
+          </tr>
+          <tr>
+            <td>Interactive features</td>
+            <td>
+              Hovering over a country on the map reveals a tooltip with the
+              exact rate and rank. The table is sortable by column and
+              searchable by country name, enabling a reader to quickly find how
+              a specific country compares or to rank countries from lowest to
+              highest. This makes the tool genuinely useful for research rather
+              than just passive consumption.
+            </td>
+          </tr>
+          <tr>
+            <td>Persuasive features</td>
+            <td>
+              The combination of map and table means the US is impossible to
+              contextualise away. On the map it is visually dominant due to its
+              physical size and dark colour; in the table it sits near the top
+              of the ranking. The dual encoding — spatial and tabular — reaches
+              readers who respond to different types of evidence.
+            </td>
+          </tr>
+        </table>
       </div>
 
-      <div class="vis-section">
-        <h2>4. Prison Policy Initiative (2024)</h2>
-        <p><strong>Source:</strong> <a href="https://www.prisonpolicy.org/global/2024.html" target="_blank">Prison Policy Initiative</a></p>
-        <p><strong>Purpose:</strong> Highlighting how US states compare to independent countries regarding incarceration.</p>
-        <p><strong>Kind of chart:</strong> Horizontal Bar Chart.</p>
-        <p><strong>Encoding:</strong> Length of bar encodes the incarceration rate. Distinct colors separate US states from international nations.</p>
-        <p><strong>Interactive features:</strong> Often static in reports, occasionally providing tooltips.</p>
-        <p><strong>Effectiveness:</strong> Highly persuasive. By interleaving US states with countries, it contextualizes state-level policies on a global scale.</p>
-        
-        <div class="data-demo">
-          <strong>Data Insight:</strong>
-          <p>
-            Based on the 2024 data from the Prison Policy Initiative, the United States continues to incarcerate more people per capita than any other nation, with rates often exceeding 500 per 100,000 residents in states like Louisiana and Mississippi, compared to nations like the UK or Canada which hover around 130-140 per 100,000.
-          </p>
-        </div>
+      <!-- VIS 4 -->
+      <div class="vis-card">
+        <h2>
+          Visualisation 4 — Prison Policy Initiative: States vs. Countries
+          (Figure 1)
+        </h2>
+        <p class="vis-source">
+          Source:
+          <a
+            href="https://www.prisonpolicy.org/global/2024.html"
+            target="_blank"
+            rel="noopener"
+            >Prison Policy Initiative, States of Incarceration: The Global
+            Context 2024</a
+          >
+        </p>
+        <table class="qa-table">
+          <tr>
+            <td>Purpose</td>
+            <td>
+              To demonstrate that every single US state, if treated as an
+              independent nation, would rank among the world's most
+              incarcerating countries. The argument is that even "progressive"
+              states like Massachusetts and Vermont are extreme by global
+              standards.
+            </td>
+          </tr>
+          <tr>
+            <td>Chart type</td>
+            <td>
+              Horizontal bar chart with mixed categorical entries — US states
+              and independent nations are interleaved in the same ranked list,
+              sorted by incarceration rate per 100,000.
+            </td>
+          </tr>
+          <tr>
+            <td>Data encoding</td>
+            <td>
+              Bar length encodes the incarceration rate per 100,000. Colour
+              distinguishes US states from countries, making clusters of states
+              immediately identifiable within the international ranking. The
+              bars are sorted so the reader can see which countries rank between
+              which states.
+            </td>
+          </tr>
+          <tr>
+            <td>Interactive features</td>
+            <td>
+              The chart includes a dropdown to isolate a specific US state and
+              highlight where it falls in the global ranking, updating a
+              comparison graphic. This personalises the data — a reader from
+              Louisiana can see their state ranked directly against Cuba and
+              Rwanda.
+            </td>
+          </tr>
+          <tr>
+            <td>Persuasive features</td>
+            <td>
+              The key rhetorical move is interleaving. By refusing to separate
+              states from countries, the chart forces a direct comparison that
+              framing-based arguments typically avoid. Seeing, for example, that
+              Oklahoma ranks between El Salvador and Cuba is far more striking
+              than a separate chart for each. The 2024 data shows that El
+              Salvador now holds the top spot (over 1,000 per 100,000 due to its
+              recent mass detention policies), with nine US states immediately
+              behind it — a ranking that contextualises American exceptionalism
+              in incarceration without a single word of editorial comment.
+            </td>
+          </tr>
+        </table>
+      </div>
+
+      <!-- VIS 5 -->
+      <div class="vis-card">
+        <h2>
+          Visualisation 5 — Prison Policy Initiative: NATO Nations Comparison
+          (Figure 2)
+        </h2>
+        <p class="vis-source">
+          Source:
+          <a
+            href="https://www.prisonpolicy.org/global/2024.html"
+            target="_blank"
+            rel="noopener"
+            >Prison Policy Initiative, States of Incarceration: The Global
+            Context 2024</a
+          >
+          (scroll to Figure 2)
+        </p>
+        <table class="qa-table">
+          <tr>
+            <td>Purpose</td>
+            <td>
+              To compare the US incarceration rate specifically against its
+              founding NATO allies, a peer group the US considers itself part
+              of, making the scale of the disparity harder to dismiss as a
+              comparison between incompatible societies.
+            </td>
+          </tr>
+          <tr>
+            <td>Chart type</td>
+            <td>
+              Horizontal bar chart (small multiples variant), showing each NATO
+              founding member as a labelled bar alongside the US. It is simpler
+              and more focused than Figure 1.
+            </td>
+          </tr>
+          <tr>
+            <td>Data encoding</td>
+            <td>
+              Bar length encodes the incarceration rate per 100,000. The US bar
+              (608) is so much longer than any other NATO member that it
+              dominates the chart. The second-highest, the UK (England and
+              Wales) at approximately 131 per 100,000, is less than a quarter of
+              the US figure. Bar length is the sole channel; there are no
+              additional visual variables to distract from that single
+              comparison.
+            </td>
+          </tr>
+          <tr>
+            <td>Interactive features</td>
+            <td>
+              A dropdown allows the reader to swap the US bar for the rate of
+              any individual US state, showing how even the least-incarcerating
+              US states compare to the same NATO peers. This transforms it from
+              a national comparison into a state-by-state audit.
+            </td>
+          </tr>
+          <tr>
+            <td>Persuasive features</td>
+            <td>
+              The choice of NATO peers is rhetorically precise. Unlike the
+              global ranking in Figure 1 (which includes authoritarian states),
+              NATO membership implies a shared commitment to liberal democratic
+              values, making the comparison more difficult to deflect. The
+              chart's extreme visual imbalance — the US bar dwarfing every other
+              — communicates the disparity faster than any text could.
+            </td>
+          </tr>
+        </table>
+      </div>
+
+      <!-- VIS 6 -->
+      <div class="vis-card">
+        <h2>
+          Visualisation 6 — Prison Policy Initiative: Women's Mass
+          Incarceration, The Whole Pie 2024
+        </h2>
+        <p class="vis-source">
+          Source:
+          <a
+            href="https://www.prisonpolicy.org/reports/pie2024women.html"
+            target="_blank"
+            rel="noopener"
+            >Prison Policy Initiative, Women's Mass Incarceration: The Whole Pie
+            2024</a
+          >
+        </p>
+        <table class="qa-table">
+          <tr>
+            <td>Purpose</td>
+            <td>
+              To show the full breakdown of where 190,600 incarcerated women in
+              the US are held and why, disaggregated by facility type (state
+              prison, local jail, federal prison, immigration detention, etc.)
+              and underlying offence. The "whole pie" framing argues that
+              partial statistics — such as only counting state prison
+              populations — systematically understate the scale of women's
+              incarceration.
+            </td>
+          </tr>
+          <tr>
+            <td>Chart type</td>
+            <td>
+              Nested pie chart (multi-level donut chart). The outer ring breaks
+              down by facility type; the inner slices break down further by
+              offence type within each facility category. A companion pie chart
+              separately shows women under all forms of correctional control
+              (including probation and parole), dwarfing the incarceration
+              figure.
+            </td>
+          </tr>
+          <tr>
+            <td>Data encoding</td>
+            <td>
+              Arc angle (and therefore area) encodes the proportion of
+              incarcerated women in each category. Colour distinguishes facility
+              types in the outer ring and offence categories within each
+              segment. Because 190,600 is the whole, proportions are a
+              meaningful encoding — unlike, for instance, encoding independent
+              averages as pie slices, which would be misleading.
+            </td>
+          </tr>
+          <tr>
+            <td>Interactive features</td>
+            <td>
+              Hovering over any segment reveals the exact count and percentage.
+              Separate detail charts for the jail slice and the youth slice are
+              also provided below the main graphic, giving the reader a
+              drill-down path into the most complex parts of the data without
+              overloading the primary visualisation.
+            </td>
+          </tr>
+          <tr>
+            <td>Persuasive features</td>
+            <td>
+              The most important persuasive choice is what is included. By
+              pulling together data from federal prisons, jails, immigration
+              detention, military facilities, civil commitment centres, and
+              youth facilities — systems that are never reported together — the
+              chart makes the argument that conventional statistics are
+              intentionally incomplete. The title "The Whole Pie" is itself an
+              editorial statement. The companion chart showing 808,700 women on
+              probation and parole makes the incarceration figure look like a
+              fraction of the total system, which is precisely the point.
+            </td>
+          </tr>
+        </table>
+      </div>
+
+      <!-- CONCLUSION -->
+      <div class="conclusion-card">
+        <h2>Which design is most effective, and why?</h2>
+        <p>
+          Of the six visualisations,
+          <strong
+            >Figure 1 from the Prison Policy Initiative (States vs.
+            Countries)</strong
+          >
+          is the most effective overall. Its core innovation is methodological
+          rather than aesthetic: by treating US states as if they were
+          independent nations and sorting them into the same ranked list as
+          actual countries, it makes an argument that is difficult to dismiss on
+          grounds of cultural incomparability. Every other design allows the
+          reader some distance — the Pew line chart is about the US in
+          isolation, the choropleth map is global but passive, the NATO
+          comparison is restricted to a curated peer group. Figure 1 removes all
+          of those exits.
+        </p>
+        <p>
+          The interleaving strategy also exploits a well-documented principle in
+          visualisation design: <em>position along a common scale</em> is the
+          most accurately perceived visual encoding (Cleveland & McGill, 1984).
+          Because every state and every country shares the same x-axis,
+          comparisons are made with minimal perceptual effort. The dropdown
+          interaction personalises the data for the reader's own state, which
+          increases engagement and makes abstract statistics personally
+          relevant.
+        </p>
+        <p>
+          By contrast, the Women's Whole Pie chart (Visualisation 6), while
+          impressive in its comprehensiveness, relies on a nested pie structure
+          that is cognitively demanding. Arc area is one of the least accurate
+          visual encodings, and comparing small slices across nested rings
+          requires significant effort. It is the right choice for demonstrating
+          composition, but less effective than a bar chart would be for precise
+          comparison. The Pew line chart (Visualisation 2) is elegant and
+          readable, but its single-series design limits it to one claim. The
+          Metrocosm map (Visualisation 1) is visually striking but encodes raw
+          population rather than rate per capita, which confounds population
+          size with incarceration policy — a significant graphical integrity
+          issue.
+        </p>
+        <p>
+          In short, Figure 1 succeeds because its design choices and its
+          argument are the same thing: the structure of the chart
+          <em>is</em> the claim.
+        </p>
       </div>
     </main>
 
     <footer class="site-footer">
       <p>
-        &copy; <span id="year"></span> Nguyen Minh Khoa. Some content/code generated with assistance from GenAI.
+        &copy; <span id="year"></span> Nguyen Minh Khoa. Some content/code
+        generated with assistance from GenAI.
       </p>
     </footer>
-    <script>document.getElementById("year").textContent = new Date().getFullYear();</script>
+    <script>
+      document.getElementById("year").textContent = new Date().getFullYear();
+    </script>
   </body>
 </html>

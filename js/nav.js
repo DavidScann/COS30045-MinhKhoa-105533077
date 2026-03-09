@@ -32,8 +32,9 @@
 
   links.forEach((a) => {
     a.addEventListener("click", (e) => {
-      e.preventDefault();
       const t = a.dataset.target;
+      if (!t) return; // external link (e.g. design.html) — let browser navigate normally
+      e.preventDefault();
       showSection(t);
     });
     // mock keyboard support, not yet supported with the current barebones site

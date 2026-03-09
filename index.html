@@ -21,8 +21,16 @@
 
       <nav class="top-nav" role="navigation" aria-label="Primary">
         <ul>
-          <li><a href="#" class="nav-link" data-target="home" aria-current="page">Home</a></li>
-          <li><a href="#" class="nav-link" data-target="televisions">Televisions</a></li>
+          <li>
+            <a href="#" class="nav-link" data-target="home" aria-current="page"
+              >Home</a
+            >
+          </li>
+          <li>
+            <a href="#" class="nav-link" data-target="televisions"
+              >Televisions</a
+            >
+          </li>
           <li><a href="design.html" class="nav-link">Design Report</a></li>
           <li><a href="#" class="nav-link" data-target="about">About Us</a></li>
         </ul>
@@ -33,127 +41,141 @@
       <section id="home" class="page active" tabindex="-1">
         <h1>Home</h1>
         <p>
-          Welcome to the Appliance Energy insight dashboard. Use this interactive platform to explore 
-          energy factors like standby consumption, appliance size, and efficiency labels in the Australian market.
+          Welcome to the Appliance Energy insight dashboard. Use this
+          interactive platform to explore energy factors like standby
+          consumption, appliance size, and efficiency labels in the Australian
+          market.
         </p>
         <p>
-          In Australia, televisions and household appliances are significant contributors to residential electricity use; 
-          choices such as screen size, display technology, and usage hours directly affect annual energy consumption.
+          In Australia, televisions and household appliances are significant
+          contributors to residential electricity use; choices such as screen
+          size, display technology, and usage hours directly affect annual
+          energy consumption.
         </p>
       </section>
 
       <section id="televisions" class="page" tabindex="-1" hidden>
-        <h1>Televisions: The Energy Story</h1>
-        <p class="intro-text">
-          Television technology has evolved rapidly, bringing bigger screens and
-          sharper images to our living rooms. But what does this mean for our
-          energy bills and the environment? Explore the data below to understand
-          the current landscape of the Australian TV market.
-        </p>
-
-        <article class="story-section">
-          <h2>1. The Landscape of Choice</h2>
-          <p>
-            When shopping for a new TV, Australian consumers are presented with
-            a variety of display technologies. Standard LED/LCD screens still dominate
-            portions of the market due to affordability, but modern tech like OLED is prominent.
+        <article class="story-section" style="border: none; padding-top: 2rem">
+          <h2
+            style="
+              font-size: 2.5rem;
+              color: #4a3e3d;
+              margin-bottom: 0.5rem;
+              line-height: 1.2;
+            "
+          >
+            Energy Consumption for different TV screen types and sizes
+          </h2>
+          <p style="font-size: 1.3rem; color: #5a5a5a; margin-bottom: 2rem">
+            Across 3,703 Australian TV models, annual energy use ranges from as
+            low as 56 kWh up to 2,652 kWh — a 47-fold difference. The majority
+            of sets cluster below 600 kWh, but large-screen and older-technology
+            models push well beyond that. Use the buttons to see how each screen
+            technology contributes to that spread.
           </p>
-          <figure>
-            <div id="bar-chart" class="responsive-svg-container chart"></div>
-            <figcaption>
-              Figure 1: Distribution of TV screen technologies in the Australian market (55-inch sample).
-            </figcaption>
-          </figure>
 
-          <p>
-            The market is also highly competitive, with numerous brands vying
-            for attention. Some brands offer a massive range of models, giving
-            consumers plenty of choices but making decision-making complex.
+          <div
+            id="filter-buttons"
+            style="
+              margin-bottom: 0;
+              display: flex;
+              gap: 10px;
+              justify-content: flex-start;
+            "
+          >
+            <button class="filter-btn active" data-tech="All">All</button>
+            <button class="filter-btn" data-tech="LED">LED</button>
+            <button class="filter-btn" data-tech="LCD">LCD</button>
+            <button class="filter-btn" data-tech="OLED">OLED</button>
+          </div>
+
+          <div
+            id="histogram"
+            class="responsive-svg-container chart"
+            style="margin-top: 1rem"
+          ></div>
+
+          <p
+            style="
+              font-size: 1.3rem;
+              color: #5a5a5a;
+              margin: 3rem 0 2rem 0;
+              line-height: 1.5;
+            "
+          >
+            Star ratings are not a reliable guide to running costs on their own.
+            A 1-star TV can use anywhere from under 200 kWh to over 1,500 kWh
+            depending on screen size, and even 6-star models span a wide range.
+            Screen technology and physical size are the two strongest predictors
+            of how much electricity a TV actually draws — hover over any dot to
+            see the details.
           </p>
-          <figure>
-            <div id="bar-chart-container" class="responsive-svg-container chart"></div>
-            <figcaption>
-              Figure 2: Number of unique TV models per brand.
-            </figcaption>
-          </figure>
-        </article>
 
-        <article class="story-section">
-          <h2>2. Bigger is Better?</h2>
-          <p>
-            There is a clear trend towards larger screens. The data shows a
-            significant concentration of available models in the 50-70 inch
-            range. While a cinematic experience is desirable, it's important to
-            consider that larger screen real estate often requires more power.
+          <div
+            id="scatterplot"
+            class="responsive-svg-container chart"
+            style="position: relative"
+          ></div>
+
+          <p
+            style="
+              font-size: 1.3rem;
+              color: #5a5a5a;
+              margin: 3rem 0 2rem 0;
+              line-height: 1.5;
+            "
+          >
+            LCD panels are by far the most energy-efficient technology on
+            average, at 297 kWh/year. LED sets average 458 kWh — 54% higher —
+            while OLED screens average 506 kWh, the highest of the three. For a
+            household running a TV 6 hours a day, choosing LCD over OLED could
+            save around $70–$90 per year at current electricity rates.
           </p>
-          <figure>
-            
-            <div id="filter-buttons" style="margin-bottom: 1rem; display: flex; gap: 10px; justify-content: center;">
-              <button class="filter-btn active" data-tech="All">All</button>
-              <button class="filter-btn" data-tech="LED">LED</button>
-              <button class="filter-btn" data-tech="LCD">LCD</button>
-              <button class="filter-btn" data-tech="OLED">OLED</button>
-            </div>
-            <div id="histogram" class="responsive-svg-container chart"></div>
 
-            <figcaption>
-              Figure 3: Frequency of available screen sizes.
-            </figcaption>
-          </figure>
-        </article>
+          <div id="donut-chart" class="responsive-svg-container chart"></div>
 
-        <article class="story-section">
-          <h2>3. The Energy Cost</h2>
-          <p>
-            So, how does technology choice impact your energy bill? The
-            donut chart below breaks down the average power consumption by screen
-            technology. It highlights the efficiency differences between
-            standard LEDs and other display architectures.
+          <p
+            style="
+              font-size: 1.3rem;
+              color: #5a5a5a;
+              margin: 3rem 0 2rem 0;
+              line-height: 1.5;
+            "
+          >
+            Australian electricity prices have risen from 8.5c/kWh in 1998 to
+            34.2c/kWh in 2024 — a four-fold increase in 26 years. Every kWh an
+            inefficient TV wastes now costs four times as much as it did in the
+            late 1990s. A TV that uses 600 kWh/year instead of 300 kWh/year now
+            costs an extra $103 annually, compared to just $21 in 1998.
           </p>
-          <figure>
-            <div id="donut-chart" class="responsive-svg-container chart"></div>
-            <figcaption>
-              Figure 4: Average power consumption by screen technology.
-            </figcaption>
-          </figure>
 
-          <p>
-            Finally, we must look at the official energy efficiency ratings. The interactive
-            scatterplot below shows the relationship between a TV's Star Rating and its
-            energy consumption, color-coded by the underlying screen technology. 
-            <strong>Hover over the points to see details for specific TV models!</strong>
-          </p>
-          <figure>
-            <div id="scatterplot" class="responsive-svg-container chart" style="position: relative;"></div>
-            <figcaption>
-              Figure 5: Relationship between energy consumption and Star Rating.
-            </figcaption>
-          </figure>
-        </article>
+          <div id="line-chart" class="responsive-svg-container chart"></div>
 
-        <article class="story-section">
-          <h2>4. The Broader Impact: Electricity Prices</h2>
-          <p>
-            Energy efficiency is more critical than ever. As the wholesale market fluctuates, 
-            the cost to power your home entertainment system can vary. The chart below illustrates 
-            the average spot power prices over the past two decades.
-          </p>
-          <figure>
-            <div id="line-chart" class="responsive-svg-container chart"></div>
-            <figcaption>
-              Figure 6: Historical spot power prices (1998-2024).
-            </figcaption>
-          </figure>
+          <div
+            style="
+              margin-top: 4rem;
+              padding-top: 2rem;
+              border-top: 1px solid #eee;
+            "
+          >
+            <h3
+              style="font-size: 1.4rem; color: #4a3e3d; margin-bottom: 0.5rem"
+            >
+              Data source
+            </h3>
+            <p style="font-size: 1.2rem; color: #d35400; margin-bottom: 0.5rem">
+              Energy Rating Data for household appliances – Televisions
+            </p>
+            <p style="font-size: 1.1rem; color: #5a5a5a">Downloaded Jan 2025</p>
+          </div>
         </article>
       </section>
-
-      
 
       <section id="about" class="page" tabindex="-1" hidden>
         <h1>About Us</h1>
         <p>
-          This project is an advanced data visualization assignment analyzing 
-          appliance energy consumption within the Australian market. We utilize 
+          This project is an advanced data visualization assignment analyzing
+          appliance energy consumption within the Australian market. We utilize
           D3.js to bring static datasets to life.
         </p>
       </section>
@@ -170,12 +192,9 @@
     <script src="https://d3js.org/d3.v7.min.js"></script>
     <script src="js/nav.js"></script>
     <script src="js/global-tooltip.js"></script>
-    <script src="js/chart.js"></script>
-    <!-- Removed redundant scatter.js to avoid duplicate logic -->
     <script src="js/donut.js"></script>
-    <script src="js/bar.js"></script>
     <script src="js/line.js"></script>
-    
+
     <script src="js/shared-constants.js"></script>
     <script src="js/interactions.js"></script>
     <script src="js/scatterplot.js"></script>

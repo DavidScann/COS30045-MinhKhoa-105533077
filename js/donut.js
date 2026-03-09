@@ -1,59 +1,98 @@
-d3.csv("data/tv-tech-donut.csv").then(function(data) {
-    data.forEach(d => d.avgEnergy = +d.avgEnergy);
+// Average energy consumption by screen technology — bar chart
+// (replaces previous donut/pie chart which implied composition rather than comparison)
+d3.csv("data/tv-tech-donut.csv").then(function (data) {
+  data.forEach((d) => (d.avgEnergy = +d.avgEnergy));
 
-    const margin = 40, width = 800, height = 500;
-    const radius = Math.min(width, height) / 2 - margin;
+  const marginD = { top: 40, right: 40, bottom: 60, left: 80 };
+  const widthD = 800 - marginD.left - marginD.right;
+  const heightD = 440 - marginD.top - marginD.bottom;
 
-    const svg = d3.select("#donut-chart")
-      .append("svg")
-        .attr("viewBox", `0 0 ${width} ${height}`)
-      .append("g")
-        .attr("transform", `translate(${width/2},${height/2})`);
+  const svg = d3
+    .select("#donut-chart")
+    .append("svg")
+    .attr(
+      "viewBox",
+      `0 0 ${widthD + marginD.left + marginD.right} ${heightD + marginD.top + marginD.bottom}`,
+    )
+    .append("g")
+    .attr("transform", `translate(${marginD.left},${marginD.top})`);
 
-    const color = d3.scaleOrdinal()
-      .domain(data.map(d => d.screenTech))
-      .range(["#1f77b4", "#ff7f0e", "#2ca02c"]); // LED, LCD, OLED standard categorical colors
+  const color = d3
+    .scaleOrdinal()
+    .domain(data.map((d) => d.screenTech))
+    .range(["#1f77b4", "#ff7f0e", "#2ca02c"]);
 
-    const pie = d3.pie().value(d => d.avgEnergy).sort(null);
-    const data_ready = pie(data);
+  const x = d3
+    .scaleBand()
+    .domain(data.map((d) => d.screenTech))
+    .range([0, widthD])
+    .padding(0.35);
 
-    const arc = d3.arc()
-      .innerRadius(radius * 0.5)
-      .outerRadius(radius * 0.8);
+  const y = d3
+    .scaleLinear()
+    .domain([0, d3.max(data, (d) => d.avgEnergy) * 1.15])
+    .range([heightD, 0]);
 
-    const outerArc = d3.arc()
-      .innerRadius(radius * 0.9)
-      .outerRadius(radius * 0.9);
+  // X axis
+  svg
+    .append("g")
+    .attr("transform", `translate(0,${heightD})`)
+    .call(d3.axisBottom(x))
+    .selectAll("text")
+    .style("font-size", "14px");
 
-    // Draw slices
-    svg.selectAll('allSlices')
-      .data(data_ready)
-      .enter()
-      .append('path')
-      .attr('d', arc)
-      .attr('fill', d => color(d.data.screenTech))
-      .attr("stroke", "white")
-      .style("stroke-width", "2px")
-      .style("opacity", 0.9)
-      .on("mouseover", function(e, d) { 
-          d3.select(this).style("opacity", 0.6); 
-          showTooltip(`<strong>${d.data.screenTech}</strong><br>${d.data.avgEnergy} kWh (Avg)`, e); 
-      })
-      .on("mousemove", moveTooltip)
-      .on("mouseout", function() { 
-          d3.select(this).style("opacity", 0.9); 
-          hideTooltip(); 
-      });
+  // Y axis
+  svg.append("g").call(d3.axisLeft(y).ticks(6));
 
-    // Draw Labels directly inside the arcs so they are readable and large
-    svg.selectAll('allLabels')
-      .data(data_ready)
-      .enter()
-      .append('text')
-        .text(d => d.data.screenTech)
-        .attr("transform", function(d) { return `translate(${arc.centroid(d)})`;  })
-        .style("text-anchor", "middle")
-        .style("font-size", "18px")
-        .style("font-weight", "bold")
-        .style("fill", "white");
+  // Y axis label
+  svg
+    .append("text")
+    .attr("transform", "rotate(-90)")
+    .attr("x", -heightD / 2)
+    .attr("y", -60)
+    .attr("text-anchor", "middle")
+    .style("font-size", "12px")
+    .text("Average Energy Consumption (kWh/year)");
+
+  // Bars
+  svg
+    .selectAll(".tech-bar")
+    .data(data)
+    .enter()
+    .append("rect")
+    .attr("class", "tech-bar")
+    .attr("x", (d) => x(d.screenTech))
+    .attr("y", (d) => y(d.avgEnergy))
+    .attr("width", x.bandwidth())
+    .attr("height", (d) => heightD - y(d.avgEnergy))
+    .attr("fill", (d) => color(d.screenTech))
+    .attr("rx", 4)
+    .style("opacity", 0.85)
+    .on("mouseover", function (e, d) {
+      d3.select(this).style("opacity", 1);
+      showTooltip(
+        `<strong>${d.screenTech}</strong><br>Avg: ${d.avgEnergy} kWh/year`,
+        e,
+      );
+    })
+    .on("mousemove", moveTooltip)
+    .on("mouseout", function () {
+      d3.select(this).style("opacity", 0.85);
+      hideTooltip();
+    });
+
+  // Value labels above bars
+  svg
+    .selectAll(".bar-label")
+    .data(data)
+    .enter()
+    .append("text")
+    .attr("class", "bar-label")
+    .attr("x", (d) => x(d.screenTech) + x.bandwidth() / 2)
+    .attr("y", (d) => y(d.avgEnergy) - 8)
+    .attr("text-anchor", "middle")
+    .style("font-size", "13px")
+    .style("font-weight", "600")
+    .style("fill", "#333")
+    .text((d) => `${d.avgEnergy} kWh`);
 });
